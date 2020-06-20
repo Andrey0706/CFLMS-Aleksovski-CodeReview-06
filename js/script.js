@@ -79,7 +79,7 @@ $(document).ready(function () {
             toRender.push(new Locations("Belvedere", "Vienna", 1030, "Schloss Belvedere", "img/img3.jpg", "13.02.2020 08:45"));
             toRender.push(new Locations("Schönbrunn Palace", "Vienna", 1130, "Schloß Schönbrunn", "img/img4.jpg", "08.05.2020 12:22"));
             toRender.push(new Restaurant("Restaurant ON", "Vienna", 1050, "Wehrgasse 8", "img/restaurant1.jpg", "09.03.2020 11:12", "01 5854900", "Chinese", "restaurant-on.at"));
-            toRender.push(new Restaurant("Noble Savage", "Vienna", 1010, "Salzgries 15", "img/restaurant2.jpg", "11.03.2020 15:17", "01 5854900", "Normal", "noblesavage.at"));
+            toRender.push(new Restaurant("Noble Savage", "Vienna", 1010, "Salzgries 15", "img/restaurant2.jpg", "11.03.2020 15:17", "01 5854900", "Vienneese", "noblesavage.at"));
             toRender.push(new Restaurant("Taco Tante", "Vienna", 1010, "Johannesgasse 12", "img/restaurant3.jpg", "15.04.2020 08:19", "0664 88430196", "Mexican", "tacotante.at"));
             toRender.push(new Restaurant("To Ellinikon", "Vienna", 1030, "Am Heumarkt 5", "img/restaurant4.jpg", "15.01.2020 09:59", "0664 88430196", "Greek", "restaurant-ellinikon.at"));
             toRender.push(new Events("Techno Dampfer", "Vienna", 1190, "Relegasse 1", "img/event1.jpg", "13.04.2020 06:19", "30. August 2020", "17:30 Uhr – 22:30 Uhr", "5,00"));
@@ -165,9 +165,23 @@ $(document).ready(function () {
             }
         }
         localStorage.setItem("toRender", JSON.stringify(toRender));
-        $("#submitBtn").on("click", function () {
-            alert(document.getElementById("theSearch").value);
-        });
+        // Search function (Case Sensitive)
+        if (window.location.href.indexOf('?search=') > 0) {
+            console.log(window.location.href);
+            var wholeQuery = window.location.search;
+            var splitIt = wholeQuery.split("=");
+            var myQuery = splitIt[1];
+            var allCardAbove = $(".card-above");
+            for (var i = 0; i < allCardAbove.length; i++) {
+                var theTextInside = allCardAbove[i].childNodes[1].innerHTML;
+                console.log("theTextInside" + theTextInside);
+                var isItPresent = theTextInside.includes(myQuery);
+                console.log("isItPresent" + isItPresent);
+                if (!isItPresent) {
+                    document.getElementById("" + i).style.display = "none";
+                }
+            }
+        }
     } //ends the big function
 }); //ends on.ready
 /*
@@ -193,3 +207,16 @@ $(document).ready(function () {
     }
 
     */
+/*$("#submitBtn").on("click", function(){
+    let searchQery = (<HTMLInputElement>document.getElementById("theSearch")).value;
+    console.log("search:" + toRender);
+
+    let allCardAbove = $(".card-above");
+    console.log("allCardAbove:" + allCardAbove);
+
+    console.log(window.location);
+
+
+
+})
+*/ 

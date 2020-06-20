@@ -158,7 +158,7 @@ toRender.push(new Locations("Hundertwasser House", "Vienna", 1030, "Kegelgasse 3
 toRender.push(new Locations("Belvedere", "Vienna", 1030, "Schloss Belvedere", "img/img3.jpg", "13.02.2020 08:45"));
 toRender.push(new Locations("Schönbrunn Palace", "Vienna", 1130, "Schloß Schönbrunn", "img/img4.jpg", "08.05.2020 12:22"));
 toRender.push(new Restaurant("Restaurant ON", "Vienna", 1050, "Wehrgasse 8", "img/restaurant1.jpg", "09.03.2020 11:12", "01 5854900", "Chinese", "restaurant-on.at"));
-toRender.push(new Restaurant("Noble Savage", "Vienna", 1010, "Salzgries 15", "img/restaurant2.jpg", "11.03.2020 15:17", "01 5854900", "Normal", "noblesavage.at"));
+toRender.push(new Restaurant("Noble Savage", "Vienna", 1010, "Salzgries 15", "img/restaurant2.jpg", "11.03.2020 15:17", "01 5854900", "Vienneese", "noblesavage.at"));
 toRender.push(new Restaurant("Taco Tante", "Vienna", 1010, "Johannesgasse 12", "img/restaurant3.jpg", "15.04.2020 08:19", "0664 88430196", "Mexican", "tacotante.at"));
 toRender.push(new Restaurant("To Ellinikon", "Vienna", 1030, "Am Heumarkt 5", "img/restaurant4.jpg", "15.01.2020 09:59", "0664 88430196", "Greek", "restaurant-ellinikon.at"));
 toRender.push(new Events("Techno Dampfer", "Vienna", 1190, "Relegasse 1", "img/event1.jpg", "13.04.2020 06:19", "30. August 2020", "17:30 Uhr – 22:30 Uhr", "5,00"));
@@ -192,26 +192,24 @@ for(let i=0; i< toRender.length; i++){
 
 				 	array1.sort((a, b) => a.date - b.date);
 
-				 for(let i=0; i<toRender.length; i++){
-				 	if(toRender[i].hasOwnProperty("ticketPrice")){
-				 		let test2 = new Events(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created, toRender[i].eventDate, toRender[i].eventTime, toRender[i].ticketPrice);
-				 		array2.push(test2);
-				 	} else if(toRender[i].hasOwnProperty("website")){
-				 		let test2 = new Restaurant(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created, toRender[i].phone, toRender[i].type, toRender[i].website);
-				 		array2.push(test2);
-				 	} else {
-				 		let test2 = new Locations(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created);
-				 		array2.push(test2);
-				 	}
+					 for(let i=0; i<toRender.length; i++){
+					 	if(toRender[i].hasOwnProperty("ticketPrice")){
+					 		let test2 = new Events(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created, toRender[i].eventDate, toRender[i].eventTime, toRender[i].ticketPrice);
+					 		array2.push(test2);
+					 	} else if(toRender[i].hasOwnProperty("website")){
+					 		let test2 = new Restaurant(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created, toRender[i].phone, toRender[i].type, toRender[i].website);
+					 		array2.push(test2);
+					 	} else {
+					 		let test2 = new Locations(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created);
+					 		array2.push(test2);
+					 		}
+						}
 
-
-				 }
-
-				  for(let i=0; i<array2.length; i++){
-				  	console.log("array1: " + array1[i]["i"]);
-				  	array2[array1[i]["i"]].display();
-				  	console.log("toRender: " + toRender[i]);
-					}
+					  for(let i=0; i<array2.length; i++){
+					  	console.log("array1: " + array1[i]["i"]);
+					  	array2[array1[i]["i"]].display();
+					  	console.log("toRender: " + toRender[i]);
+						}
 				}
 
 				if(mainRowDesc){
@@ -233,43 +231,52 @@ for(let i=0; i< toRender.length; i++){
 
 				 	array1.sort((a, b) => a.date - b.date);
 
-				 for(let i=0; i<toRender.length; i++){
-				 	if(toRender[i].hasOwnProperty("ticketPrice")){
-				 		let test2 = new Events(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created, toRender[i].eventDate, toRender[i].eventTime, toRender[i].ticketPrice);
-				 		array2.push(test2);
-				 	} else if(toRender[i].hasOwnProperty("website")){
-				 		let test2 = new Restaurant(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created, toRender[i].phone, toRender[i].type, toRender[i].website);
-				 		array2.push(test2);
-				 	} else {
-				 		let test2 = new Locations(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created);
-				 		array2.push(test2);
-				 	}
+				 	for(let i=0; i<toRender.length; i++){
+					 	if(toRender[i].hasOwnProperty("ticketPrice")){
+					 		let test2 = new Events(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created, toRender[i].eventDate, toRender[i].eventTime, toRender[i].ticketPrice);
+					 		array2.push(test2);
+					 	} else if(toRender[i].hasOwnProperty("website")){
+					 		let test2 = new Restaurant(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created, toRender[i].phone, toRender[i].type, toRender[i].website);
+					 		array2.push(test2);
+					 	} else {
+					 		let test2 = new Locations(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created);
+					 		array2.push(test2);
+					 		}
+				 		}
 
-				 }
-
-				  for(let i=array2.length-1; i>=0; i--){
-				  	console.log("array1: " + array1[i]["i"]);
-				  	array2[array1[i]["i"]].display();
-				  	console.log("toRender: " + toRender[i]);
+					  for(let i=array2.length-1; i>=0; i--){
+					  	console.log("array1: " + array1[i]["i"]);
+					  	array2[array1[i]["i"]].display();
+					  	console.log("toRender: " + toRender[i]);
+						}
 					}
-				}
-
-
 
 
 localStorage.setItem("toRender", JSON.stringify(toRender));
 
 
-$("#submitBtn").on("click", function(){
+// Search function (Case Sensitive)
+if(window.location.href.indexOf('?search=')>0){
+	console.log(window.location.href);
+	let wholeQuery = window.location.search;
+	let splitIt = wholeQuery.split("=");
+	let myQuery = splitIt[1];
+	let allCardAbove = $(".card-above");
 
-	alert((<HTMLInputElement>document.getElementById("theSearch")).value);
-})
+	for(let i=0; i<allCardAbove.length; i++){
+		let theTextInside = allCardAbove[i].childNodes[1].innerHTML;
+		console.log("theTextInside" + theTextInside);
+		let isItPresent = theTextInside.includes(myQuery);
+		console.log("isItPresent" + isItPresent);
+		if(!isItPresent){
+			document.getElementById(`${i}`).style.display = "none";
+		}
+	}
 
-
+}
 
 
 } //ends the big function
-
 
 
 }) //ends on.ready
@@ -298,3 +305,16 @@ $("#submitBtn").on("click", function(){
 
 	*/
 
+/*$("#submitBtn").on("click", function(){
+	let searchQery = (<HTMLInputElement>document.getElementById("theSearch")).value;
+	console.log("search:" + toRender);
+
+	let allCardAbove = $(".card-above");
+	console.log("allCardAbove:" + allCardAbove);
+
+	console.log(window.location);
+
+
+
+})
+*/
