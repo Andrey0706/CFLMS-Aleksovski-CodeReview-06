@@ -4,12 +4,20 @@ let id: number = 0;
 
 var mainRow= document.getElementById("mainRow");
 var mainRowAsc= document.getElementById("mainRow2");
+var mainRowDesc= document.getElementById("mainRowDesc");
 
 if(mainRow){
 Render(mainRow);
 }
+if(mainRowAsc){
+Render(mainRowAsc);
+}
+if(mainRowDesc){
+Render(mainRowDesc);
+}
+
 function Render(theNode){
-var toRender : Array<Locations> = [];
+var toRender : Array<any> = [];
 
 class Locations {
 	name: string ="";
@@ -32,27 +40,26 @@ class Locations {
 	
 	display(){
 		theNode.innerHTML += `
-
-		<div class="col mb-4" id="${id}">
-
-		    <div class="card loc text-center">
-
-		    	<div class="card-above">
-		       	 	<h5 class="card-title">${this.name}</h5>
-		      	</div>
-				<div class="imgContainer">
-		      	<img src="${this.img}" class="card-img-top" alt="...">
-		      	</div>
-		      	<div class="card-body">
-		       	 	<h6 class="card-title"><i class='fas fa-map-marker-alt' style='font-size:24px'></i>&nbsp;&nbsp;&nbsp;${this.address}</h6>
-		        	<p class="card-text">${this.zipCode}, ${this.city}</p>
-		      	</div>
-		      	<div class="card-footer">
-      				<small class="text-muted">&#128356;Created:<br> ${this.created}</small>
-   			 	</div>
-		    </div>
-		</div>
-
+			<div class="col mb-4" id="${id}">
+			    <div class="card loc text-center">
+			        <div class="card-above">
+			            <h5 class="card-title">${this.name}</h5>
+			        </div>
+			        <div class="imgContainer d-none d-md-block">
+			            <img src="${this.img}" class="card-img-top" alt="..." />
+			        </div>
+			        <div class="card-body">
+			            <h6 class="card-title"><i class="fas fa-map-marker-alt" style="font-size: 24px;"></i>&nbsp;&nbsp;&nbsp;${this.address}</h6>
+			            <p class="card-text">${this.zipCode}, ${this.city}</p>
+			        </div>
+			        <div class="card-footer">
+			            <small class="text-muted">
+			                &#128356;Created:<br />
+			                ${this.created}
+			            </small>
+			        </div>
+			    </div>
+			</div>
 		`;
 		id++;
 	}
@@ -64,7 +71,7 @@ class Restaurant extends Locations {
 	type: string;
 	website: string;
 
-	constructor(name, city, zipCode, address, img, created,  phone, type, website){
+	constructor(name, city, zipCode, address, img, created, phone, type, website){
 		super(name, city, zipCode, address, img, created);
 		this.phone = phone;
 		this.type = type;
@@ -74,25 +81,28 @@ class Restaurant extends Locations {
 	display(){
 		theNode.innerHTML += `
 				<div class="col mb-4" id="${id}">
-		    <div class="card res text-center">
-		    	<div class="card-above restaurant">
-		       	 	<h5 class="card-title">${this.name}</h5>
-		      	</div>
-				<div class="imgContainer">
-		      	<img src="${this.img}" class="card-img-top" alt="...">
-		      	</div>
-		      	<div class="card-body">
-		       	 	<h6 class="card-title"><i class='fas fa-map-marker-alt' style='font-size:24px'></i>&nbsp;&nbsp;&nbsp;${this.address}</h6>
-		        	<p class="card-text">${this.zipCode}, ${this.city}</p>
-		        	<p class="card-text typeOf">${this.type}</p>
-		        	<p class="card-text phone">&#128383; ${this.phone}</p>
-		        	<button class="container-fluid restaurant"><a class="text-light" href="http://${this.website}">www.${this.website}</a></button>
-		      	</div>
-		      	<div class="card-footer">
-      				<small class="text-muted">&#128356;Created:<br> ${this.created}</small>
-   			 	</div>
-		    </div>
-		</div>
+				    <div class="card res text-center">
+				        <div class="card-above restaurant">
+				            <h5 class="card-title">${this.name}</h5>
+				        </div>
+				        <div class="imgContainer d-none d-md-block">
+				            <img src="${this.img}" class="card-img-top" alt="..." />
+				        </div>
+				        <div class="card-body">
+				            <h6 class="card-title"><i class="fas fa-map-marker-alt" style="font-size: 24px;"></i>&nbsp;&nbsp;&nbsp;${this.address}</h6>
+				            <p class="card-text">${this.zipCode}, ${this.city}</p>
+				            <p class="card-text typeOf">Type: ${this.type}</p>
+				            <p class="card-text phone">&#128383; ${this.phone}</p>
+				            <button class="container-fluid restaurant"><a class="text-light" href="http://${this.website}">www.${this.website}</a></button>
+				        </div>
+				        <div class="card-footer">
+				            <small class="text-muted">
+				                &#128356;Created:<br />
+				                ${this.created}
+				            </small>
+				        </div>
+				    </div>
+				</div>
 		`;
 		id++;
 	}
@@ -113,27 +123,29 @@ class Events extends Locations {
 
 	display(){
 		theNode.innerHTML += `
-				<div class="col mb-4" id="${id}">
-		    <div class="card eve text-center">
-		    	<div class="card-above event">
-		       	 	<h5 class="card-title">${this.name}</h5>
-		      	</div>
-				<div class="imgContainer">
-		      	<img src="${this.img}" class="card-img-top" alt="...">
-		      	</div>
-		      	<div class="card-body">
-		       	 	<h6 class="card-title"><i class='fas fa-map-marker-alt' style='font-size:24px'></i>&nbsp;&nbsp;&nbsp;${this.address}</h6>
-		        	<p class="card-text">${this.zipCode}, ${this.city}</p>
-		        	<p class="card-text dateE">Date: ${this.eventDate}</p>
-		        	<p class="card-text timeE">Time: ${this.eventTime}</p>
-		        	<p class="card-text">Price: &euro;${this.ticketPrice}</p>
-		        	
-		      	</div>
-		      	<div class="card-footer">
-      				<small class="text-muted">&#128356;Created:<br> ${this.created}</small>
-   			 	</div>
-		    </div>
-		</div>
+			<div class="col mb-4" id="${id}">
+			    <div class="card eve text-center">
+			        <div class="card-above event">
+			            <h5 class="card-title">${this.name}</h5>
+			        </div>
+			        <div class="imgContainer d-none d-md-block">
+			            <img src="${this.img}" class="card-img-top" alt="..." />
+			        </div>
+			        <div class="card-body">
+			            <h6 class="card-title"><i class="fas fa-map-marker-alt" style="font-size: 24px;"></i>&nbsp;&nbsp;&nbsp;${this.address}</h6>
+			            <p class="card-text">${this.zipCode}, ${this.city}</p>
+			            <p class="card-text dateE">Date: ${this.eventDate}</p>
+			            <p class="card-text timeE">Time: ${this.eventTime}</p>
+			            <p class="card-text">Price: &euro;${this.ticketPrice}</p>
+			        </div>
+			        <div class="card-footer">
+			            <small class="text-muted">
+			                &#128356;Created:<br />
+			                ${this.created}
+			            </small>
+			        </div>
+			    </div>
+			</div>
 		`;
 		id++;
 	}
@@ -155,78 +167,114 @@ toRender.push(new Events("Spiritsfestival 2020", "Vienna", 1110, "Heldenplatz 1"
 toRender.push(new Events("WeAreDevelopers", "Vienna", 1110, "Landstrasse 8", "img/event4.jpg", "11.04.2020 22:55", "05. Oktober 2020", "11:00 Uhr – 15:00 Uhr", "5,00"));
 }
 
-														if(mainRowAsc){
-															var toRender: Array<Locations> = JSON.parse(localStorage.getItem("toRender"));
-															console.log("to render: " + toRender);
-															let array1 = [];
-
-														for(let i=0; i<toRender.length; i++){
-														//from DD/MM/YY to MM/DD/YY
-															let roughTime = toRender[i].created;
-															let roughArray = roughTime.split(".");
-															let temp = roughArray[0];
-															roughArray[0] = roughArray[1];
-															roughArray[1] = temp;
-															roughTime = `${roughArray[0]}.${roughArray[1]}.${roughArray[2]}`;
-
-															let date = new Date(roughTime);
-															console.log(date);
-
-															array1.push({i, date});
-														}
-
-														 array1.sort((a, b) => a.date - b.date);
-
-														  console.log("array1: " + array1);
-														  console.log("to render: " + toRender);
-
-														  for(let i=0; i< toRender.length; i++){
-														  	console.log("array1: " + array1[i]["i"]);
-														  	console.log("toRender: " + toRender[i]);
-														  toRender[5].display();
-															}
-														}
-
- console.log("to render: " + toRender);
+if(mainRow){
 for(let i=0; i< toRender.length; i++){
 		toRender[i].display();
 }
+}
+
+				if(mainRowAsc){
+					var toRender: Array<any> = JSON.parse(localStorage.getItem("toRender"));
+
+					let array1 = [];
+					let array2 = [];
+					//from DD/MM/YY to MM/DD/YY
+					for(let i=0; i<toRender.length; i++){
+						let roughTime = toRender[i].created;
+						let roughArray = roughTime.split(".");
+						let temp = roughArray[0];
+						roughArray[0] = roughArray[1];
+						roughArray[1] = temp;
+						roughTime = `${roughArray[0]}.${roughArray[1]}.${roughArray[2]}`;
+						let date = new Date(roughTime);
+						array1.push({i, date});
+					}
+
+				 	array1.sort((a, b) => a.date - b.date);
+
+				 for(let i=0; i<toRender.length; i++){
+				 	if(toRender[i].hasOwnProperty("ticketPrice")){
+				 		let test2 = new Events(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created, toRender[i].eventDate, toRender[i].eventTime, toRender[i].ticketPrice);
+				 		array2.push(test2);
+				 	} else if(toRender[i].hasOwnProperty("website")){
+				 		let test2 = new Restaurant(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created, toRender[i].phone, toRender[i].type, toRender[i].website);
+				 		array2.push(test2);
+				 	} else {
+				 		let test2 = new Locations(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created);
+				 		array2.push(test2);
+				 	}
+
+
+				 }
+
+				  for(let i=0; i<array2.length; i++){
+				  	console.log("array1: " + array1[i]["i"]);
+				  	array2[array1[i]["i"]].display();
+				  	console.log("toRender: " + toRender[i]);
+					}
+				}
+
+				if(mainRowDesc){
+					var toRender: Array<any> = JSON.parse(localStorage.getItem("toRender"));
+
+					let array1 = [];
+					let array2 = [];
+					//from DD/MM/YY to MM/DD/YY
+					for(let i=0; i<toRender.length; i++){
+						let roughTime = toRender[i].created;
+						let roughArray = roughTime.split(".");
+						let temp = roughArray[0];
+						roughArray[0] = roughArray[1];
+						roughArray[1] = temp;
+						roughTime = `${roughArray[0]}.${roughArray[1]}.${roughArray[2]}`;
+						let date = new Date(roughTime);
+						array1.push({i, date});
+					}
+
+				 	array1.sort((a, b) => a.date - b.date);
+
+				 for(let i=0; i<toRender.length; i++){
+				 	if(toRender[i].hasOwnProperty("ticketPrice")){
+				 		let test2 = new Events(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created, toRender[i].eventDate, toRender[i].eventTime, toRender[i].ticketPrice);
+				 		array2.push(test2);
+				 	} else if(toRender[i].hasOwnProperty("website")){
+				 		let test2 = new Restaurant(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created, toRender[i].phone, toRender[i].type, toRender[i].website);
+				 		array2.push(test2);
+				 	} else {
+				 		let test2 = new Locations(toRender[i].name, toRender[i].city, toRender[i].zipCode, toRender[i].address, `../${toRender[i].img}`, toRender[i].created);
+				 		array2.push(test2);
+				 	}
+
+				 }
+
+				  for(let i=array2.length-1; i>=0; i--){
+				  	console.log("array1: " + array1[i]["i"]);
+				  	array2[array1[i]["i"]].display();
+				  	console.log("toRender: " + toRender[i]);
+					}
+				}
+
+
+
 
 localStorage.setItem("toRender", JSON.stringify(toRender));
 
+
+$("#submitBtn").on("click", function(){
+
+	alert((<HTMLInputElement>document.getElementById("theSearch")).value);
+})
+
+
+
+
 } //ends the big function
 
-if(mainRowAsc){
-Render(mainRowAsc);
-}
+
+
+}) //ends on.ready
 
 /*
-for(let j=0; j<array1.length; j++){
-	array1[j]["i"]=j;
-}
-
-let map = new Map();
-
-//let ascArray: Array<string> = [];
-
-for(let i=0; i<toRender.length; i++){
-//from DD/MM/YY to MM/DD/YY
-	let roughTime = toRender[i].created;
-	let roughArray = roughTime.split(".");
-	let temp = roughArray[0];
-	roughArray[0] = roughArray[1];
-	roughArray[1] = temp;
-	roughTime = `${roughArray[0]}.${roughArray[1]}.${roughArray[2]}`;
-
-	let date = new Date(roughTime);
-	console.log(date);
-
-		map.set(i, date);
-}
-console.log(map);
-
-
-
 
 	//today : object = new Date();
 	//date: string;
@@ -250,4 +298,3 @@ console.log(map);
 
 	*/
 
-	})

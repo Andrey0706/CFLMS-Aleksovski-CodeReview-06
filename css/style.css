@@ -1,15 +1,38 @@
 .body {
   font-family: "Cuprum", sans-serif; }
 
+.navbar-light .navbar-nav .nav-link {
+  color: white; }
+
+.navbar-light .navbar-brand {
+  color: white; }
+
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+  color: white; }
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #00d4ff; }
+
+.navbar-light .navbar-brand:hover {
+  color: #00d4ff; }
+
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link:hover {
+  color: #00d4ff; }
+
 .card {
   border-top-right-radius: 2vw;
   border-bottom-left-radius: 5vw;
   overflow: hidden; }
 
+.navbar {
+  background: #581845;
+  background: radial-gradient(circle, #581845 0%, black 100%); }
+
 .card-above {
-  background-color: #9EDFFB;
+  background-color: #00d4ff;
   margin-bottom: 0;
-  text-align: center; }
+  text-align: center;
+  color: white; }
 
 .card-body {
   padding: 0.7rem; }
@@ -18,7 +41,7 @@
   background-color: green; }
 
 .card p {
-  border-top: 1px solid lightgray; }
+  border-top: 1px solid #F7F7F7; }
 
 .restaurant {
   background-color: #581845;
@@ -35,6 +58,6 @@
   border: 4px solid green; }
 
 .card.loc {
-  border: 4px solid #9EDFFB; }
+  border: 4px solid #00d4ff; }
 
 /*# sourceMappingURL=style.css.map */
